@@ -31,6 +31,191 @@
             <button id="demo-btn" class="btn-secondary">
                 <span>🎬 演示模式</span>
             </button>
+            <button id="toggle-controls-btn" class="btn-secondary" style="display: none;">
+                <span>⚙️ 调节参数</span>
+            </button>
+        </div>
+
+        <div class="demo-controls-panel" id="demo-controls-panel" style="display: none;">
+            <div class="controls-header">
+                <h3>🎛️ 场景参数调节</h3>
+                <button id="apply-controls-btn" class="btn-primary btn-small">
+                    <span>✨ 应用更改</span>
+                </button>
+            </div>
+            
+            <div class="controls-tabs">
+                <button class="tab-btn active" data-tab="sky-tab">天空</button>
+                <button class="tab-btn" data-tab="weather-tab">天气</button>
+                <button class="tab-btn" data-tab="wind-tab">风力</button>
+                <button class="tab-btn" data-tab="character-tab">人物</button>
+                <button class="tab-btn" data-tab="preset-tab">预设</button>
+            </div>
+
+            <div class="tab-content" id="sky-tab">
+                <div class="control-row">
+                    <label>时间</label>
+                    <select id="control-time-of-day">
+                        <option value="day">☀️ 白天</option>
+                        <option value="night">🌙 夜晚</option>
+                        <option value="dawn">🌅 黎明</option>
+                        <option value="dusk">🌇 黄昏</option>
+                    </select>
+                </div>
+                <div class="control-row">
+                    <label>天空颜色</label>
+                    <input type="color" id="control-sky-color" value="#87CEEB">
+                    <span class="color-preview" id="sky-color-preview"></span>
+                </div>
+                <div class="control-row">
+                    <label>云密度: <span id="cloud-density-value">50</span>%</label>
+                    <input type="range" id="control-cloud-density" min="0" max="100" value="50" step="5">
+                </div>
+                <div class="control-row">
+                    <label>显示太阳</label>
+                    <input type="checkbox" id="control-sun-visible" checked>
+                </div>
+                <div class="control-row">
+                    <label>显示月亮</label>
+                    <input type="checkbox" id="control-moon-visible">
+                </div>
+            </div>
+
+            <div class="tab-content" id="weather-tab" style="display: none;">
+                <div class="control-row">
+                    <label>降雨</label>
+                    <input type="checkbox" id="control-rain-active">
+                </div>
+                <div class="control-row" id="rain-intensity-row" style="display: none;">
+                    <label>降雨强度: <span id="rain-intensity-value">50</span>%</label>
+                    <input type="range" id="control-rain-intensity" min="10" max="100" value="50" step="5">
+                </div>
+                <div class="control-row" id="rain-speed-row" style="display: none;">
+                    <label>雨滴速度: <span id="rain-speed-value">5</span></label>
+                    <input type="range" id="control-rain-speed" min="1" max="10" value="5" step="1">
+                </div>
+                
+                <hr>
+                
+                <div class="control-row">
+                    <label>降雪</label>
+                    <input type="checkbox" id="control-snow-active">
+                </div>
+                <div class="control-row" id="snow-intensity-row" style="display: none;">
+                    <label>降雪强度: <span id="snow-intensity-value">50</span>%</label>
+                    <input type="range" id="control-snow-intensity" min="10" max="100" value="50" step="5">
+                </div>
+                <div class="control-row" id="snow-speed-row" style="display: none;">
+                    <label>雪花速度: <span id="snow-speed-value">3</span></label>
+                    <input type="range" id="control-snow-speed" min="1" max="10" value="3" step="1">
+                </div>
+                
+                <hr>
+                
+                <div class="control-row">
+                    <label>起雾</label>
+                    <input type="checkbox" id="control-fog-active">
+                </div>
+                <div class="control-row" id="fog-density-row" style="display: none;">
+                    <label>雾气浓度: <span id="fog-density-value">50</span>%</label>
+                    <input type="range" id="control-fog-density" min="10" max="100" value="50" step="5">
+                </div>
+            </div>
+
+            <div class="tab-content" id="wind-tab" style="display: none;">
+                <div class="control-row">
+                    <label>风力等级: <span id="wind-strength-value">3</span>级</label>
+                    <input type="range" id="control-wind-strength" min="0" max="10" value="3" step="1">
+                </div>
+                <div class="control-row">
+                    <label>风向: <span id="wind-direction-value">0</span>° (北)</label>
+                    <input type="range" id="control-wind-direction" min="0" max="360" value="0" step="15">
+                </div>
+                <div class="control-row">
+                    <label>树木摆动: <span id="tree-sway-value">9</span>°</label>
+                    <span class="hint">(自动随风力变化，也可手动调节)</span>
+                </div>
+                <div class="control-row">
+                    <input type="range" id="control-tree-sway" min="0" max="45" value="9" step="1">
+                </div>
+            </div>
+
+            <div class="tab-content" id="character-tab" style="display: none;">
+                <div class="control-row">
+                    <label>人物性别</label>
+                    <select id="control-character-gender">
+                        <option value="male">👨 男性</option>
+                        <option value="female">👩 女性</option>
+                    </select>
+                </div>
+                <div class="control-row">
+                    <label>持伞</label>
+                    <input type="checkbox" id="control-umbrella-active">
+                </div>
+                <div class="control-row" id="umbrella-color-row" style="display: none;">
+                    <label>雨伞颜色</label>
+                    <input type="color" id="control-umbrella-color" value="#4A90D9">
+                </div>
+                <div class="control-row">
+                    <label>姿势</label>
+                    <select id="control-posture">
+                        <option value="standing">🧍 站立</option>
+                        <option value="walking">🚶 行走</option>
+                    </select>
+                </div>
+                <hr>
+                <div class="control-row">
+                    <label>衣物配置</label>
+                    <span class="hint">根据温度自动选择</span>
+                </div>
+                <div class="control-row checklist">
+                    <label><input type="checkbox" class="clothing-check" value="tshirt"> T恤</label>
+                    <label><input type="checkbox" class="clothing-check" value="long_sleeve"> 长袖</label>
+                    <label><input type="checkbox" class="clothing-check" value="shorts"> 短裤</label>
+                    <label><input type="checkbox" class="clothing-check" value="pants"> 长裤</label>
+                    <label><input type="checkbox" class="clothing-check" value="jacket"> 夹克</label>
+                    <label><input type="checkbox" class="clothing-check" value="heavy_jacket"> 厚外套</label>
+                    <label><input type="checkbox" class="clothing-check" value="scarf"> 围巾</label>
+                    <label><input type="checkbox" class="clothing-check" value="gloves"> 手套</label>
+                </div>
+            </div>
+
+            <div class="tab-content" id="preset-tab" style="display: none;">
+                <div class="presets-grid">
+                    <button class="preset-btn" data-preset="sunny">
+                        <span class="preset-icon">☀️</span>
+                        <span class="preset-name">晴天</span>
+                    </button>
+                    <button class="preset-btn" data-preset="cloudy">
+                        <span class="preset-icon">☁️</span>
+                        <span class="preset-name">多云</span>
+                    </button>
+                    <button class="preset-btn" data-preset="rainy">
+                        <span class="preset-icon">🌧️</span>
+                        <span class="preset-name">雨天</span>
+                    </button>
+                    <button class="preset-btn" data-preset="snowy">
+                        <span class="preset-icon">❄️</span>
+                        <span class="preset-name">雪天</span>
+                    </button>
+                    <button class="preset-btn" data-preset="foggy">
+                        <span class="preset-icon">🌫️</span>
+                        <span class="preset-name">大雾</span>
+                    </button>
+                    <button class="preset-btn" data-preset="windy">
+                        <span class="preset-icon">💨</span>
+                        <span class="preset-name">大风</span>
+                    </button>
+                    <button class="preset-btn" data-preset="stormy">
+                        <span class="preset-icon">⛈️</span>
+                        <span class="preset-name">暴风雨</span>
+                    </button>
+                    <button class="preset-btn" data-preset="night">
+                        <span class="preset-icon">🌙</span>
+                        <span class="preset-name">夜晚</span>
+                    </button>
+                </div>
+            </div>
         </div>
 
         <div class="main-content">
